@@ -5,23 +5,26 @@ package test;
 
 import static org.junit.Assert.*;
 
+import com.sun.swing.internal.plaf.metal.resources.metal;
+import org.junit.Before;
 import org.junit.Test;
 
 import sml.Machine;
+import sml.Translator;
+
+import java.io.File;
 
 /**
  * @author Guilherme
  *
  */
 public class MachineTest {
+    private Machine m;
 
-	/**
-	 * Test method for {@link sml.Machine#hashCode()}.
-	 */
-	@Test
-	public final void testHashCode() {
-		fail("Not yet implemented"); // TODO
-	}
+    @Before
+    public void setUp() throws Exception{
+        m = new Machine();
+    }
 
 	/**
 	 * Test method for {@link sml.Machine#main(java.lang.String[])}.
@@ -30,7 +33,6 @@ public class MachineTest {
 	public final void testMain() {
 		String[] textArray = new String[2];
 		textArray[0] = "testMML.txt";
-		textArray[1] = "testMML2.txt";//note : is this how the registers should be referenced ? as integers? that would make sense
 		Machine.main(textArray);
 	}
 
@@ -39,7 +41,24 @@ public class MachineTest {
 	 */
 	@Test
 	public final void testToString() {
-		fail("Not yet implemented"); // TODO
+        //setup
+        String filePath = "testMML.txt";
+        Translator t = new Translator(filePath);
+        t.readAndTranslate(m.getLabels(),m.getProg());
+        //expected
+        String expected = "f0: lin register 20 value is 6\n" +
+                "f1: lin register 21 value is 1\n" +
+                "f2: lin register 22 value is 1\n" +
+                "f3: mul 21 * 20 to 21\n" +
+                "f4: sub 20 - 22 to 20\n" +
+                "f5: bnz next label being called is f3 until register 20 is 0\n" +
+                "f6: out print register: 21\n" +
+                "f7: div 21 / 21 to 0\n" +
+                "f8: add 21 + 21 to 1\n";
+        //actual
+        String actual = m.toString();
+        //test
+        assertEquals(expected,actual);
 	}
 
 	/**
@@ -47,95 +66,17 @@ public class MachineTest {
 	 */
 	@Test
 	public final void testExecute() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link sml.Machine#getLabels()}.
-	 */
-	@Test
-	public final void testGetLabels() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link sml.Machine#getProg()}.
-	 */
-	@Test
-	public final void testGetProg() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link sml.Machine#getRegisters()}.
-	 */
-	@Test
-	public final void testGetRegisters() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link sml.Machine#getPc()}.
-	 */
-	@Test
-	public final void testGetPc() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link sml.Machine#setLabels(Labels)}.
-	 */
-	@Test
-	public final void testSetLabels() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link sml.Machine#setProg(ArrayList)}.
-	 */
-	@Test
-	public final void testSetProg() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link sml.Machine#setRegisters(Registers)}.
-	 */
-	@Test
-	public final void testSetRegisters() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link sml.Machine#setPc(int)}.
-	 */
-	@Test
-	public final void testSetPc() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link sml.Machine#equals(java.lang.Object)}.
-	 */
-	@Test
-	public final void testEqualsObject() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link sml.Machine#canEqual(java.lang.Object)}.
-	 */
-	@Test
-	public final void testCanEqual() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link sml.Machine#Machine()}.
-	 */
-	@Test
-	public final void testMachine() {
-		fail("Not yet implemented"); // TODO
-	}
-
+        //setup
+        String filePath = "testMML.txt";
+        Translator t = new Translator(filePath);
+        t.readAndTranslate(m.getLabels(), m.getProg());
+        //exec
+        m.execute();
+        //expected
+        String expected = "Registers(registers=[1, 1440, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 720, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0])";
+       //actual
+        String actual = m.getRegisters().toString();
+        //test
+        assertEquals(expected,actual);
+    }
 }
