@@ -3,6 +3,8 @@
   <component name="EclipseModuleManager">
     <libelement value="file:////bloomsburyfs/home/gcorre02/Desktop/eclipse/lombok.jar" />
     <libelement value="file://H:/lib/mockito-all-1.9.5.jar" />
+    <libelement value="file:///Users/ludovicdupuis/Documents/workspace_Java/lombok.jar" />
+    <libelement value="file:///Users/ludovicdupuis/Documents/workspace_Java/mockito-all-1.9.5.jar" />
     <src_description expected_position="0">
       <src_folder value="file://$MODULE_DIR$/src" expected_position="0" />
     </src_description>

@@ -39,15 +39,37 @@ public class RegistersTest {
 	 */
 	@Test
 	public final void testSetRegister() {
-		fail("Not yet implemented"); // TODO
+		//setup
+        int indexOfRegister = 7;
+        //expected
+        int expected = 45;
+        //actual
+        r.setRegister(indexOfRegister,expected);
+        int actual =r.getRegister(indexOfRegister);
+        //test
+        assertEquals(expected,actual);
 	}
-
+    /**
+     * Test method for {@link sml.Registers#setRegister(int, int)}.
+     */
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public final void testSetRegisterThrowsException() {
+        r.setRegister(45,6);
+    }
 	/**
 	 * Test method for {@link sml.Registers#getRegister(int)}.
 	 */
 	@Test
 	public final void testGetRegister() {
-		fail("Not yet implemented"); // TODO
+        //setup
+        int indexOfRegister = 7;
+        //expected
+        int expected = 45;
+        //actual
+        r.setRegister(indexOfRegister,expected);
+        int actual =r.getRegister(indexOfRegister);
+        //test
+        assertEquals(expected,actual);
 	}
 
 	/**
@@ -55,15 +77,22 @@ public class RegistersTest {
 	 */
 	@Test
 	public final void testGetRegisters() {
-		fail("Not yet implemented"); // TODO
+        //setup
+        int numberOfRegisters = 32;
+        int expected = 0;
+        //test
+        for (int i = 0; i != numberOfRegisters; i++) {
+            assertEquals(expected,r.getRegisters()[i]);
+        }
+        //anotherTest
+        //setup
+        int indexOfRegister = 7;
+        //expected
+        expected = 45;
+        //actual
+        r.setRegister(indexOfRegister,expected);
+        int actual =r.getRegisters()[indexOfRegister];
+        //test
+        assertEquals(expected,actual);
 	}
-
-	/**
-	 * Test method for {@link sml.Registers#setRegisters(int[])}.
-	 */
-	@Test
-	public final void testSetRegisters() {
-		fail("Not yet implemented"); // TODO
-	}
-
 }
