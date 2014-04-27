@@ -30,6 +30,7 @@ public class BnzInstructionTest {
 	Instruction bnz;
 	Instruction inst1;
 	Instruction inst2;
+
 	@Mock
 	private MachineInterface m;
 	@Mock
@@ -39,6 +40,7 @@ public class BnzInstructionTest {
 	@Mock
 	private ArrayList<Instruction> instAL;
 	String example;
+
 	@Before
 	public void setUp() throws Exception {
 		initMocks(this);

@@ -1,12 +1,14 @@
 package sml;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 
 //An instance contains a list of Strings, called "labels",
 //in the order in which they were added to the list. 
 
 public class Labels {
-
+    @Getter //for testing
 	private ArrayList<String> labels;
 
 	{

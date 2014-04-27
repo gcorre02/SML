@@ -33,7 +33,7 @@ public class OutInstructionTest {
 
 	@Test
 	public final void testToString() {
-		String expected = "L1: out register 0 value is 5";
+		String expected = "L1: out print register: 0";
 		String input = example;
 		assertEquals("ToString Overriding not working properly or not implemented", expected, input);
 	}
@@ -50,13 +50,13 @@ public class OutInstructionTest {
 	public final void testOutInstruction() {
 		String[] expected = new String[3];
 		expected[0] = "L1:";
-		expected[1] = "0";
-		expected[2] = "5";
+		expected[1] = "print";
+		expected[2] = "0";
 		String[] exampleArray = example.split(" ");
 		String[] input = new String[3];
 		input[0] = exampleArray[0];
-		input[1] = exampleArray[3];
-		input[2] = exampleArray[6];
+		input[1] = exampleArray[2];
+		input[2] = exampleArray[4];
 
 		assertTrue("OutInstruction is not an instance of instruction", out instanceof Instruction);
 		assertArrayEquals("label, register and parameter are not being translated properly",expected, input);

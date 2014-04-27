@@ -11,11 +11,7 @@ public class OutInstruction extends Instruction {
 	private int register;
 	private int value;
 
-	/*completely unnecessary code ?
-	public OutInstruction(String label, String opcode) {
-		super(label, opcode);
-	}
-	*/
+
 
 	public OutInstruction(String label, int register) {
 		super(label, "out");
@@ -30,6 +26,6 @@ public class OutInstruction extends Instruction {
 
 	@Override
 	public String toString() {
-		return super.toString() + " print out register: " + register;
+		return super.toString() + " print register: " + register;
 	}
 }

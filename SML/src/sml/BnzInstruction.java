@@ -11,13 +11,7 @@ public class BnzInstruction extends Instruction {
 	private int register;
 	private String nextLabel;
 
-	/*completely unnecessary code ?
-	public OutInstruction(String label, String opcode) {
-		super(label, opcode);
-	}
-	*/
 
-	
 
 	public BnzInstruction(String label, int s1, String nextLabel) {
 		super(label, "bnz");
