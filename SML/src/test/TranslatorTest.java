@@ -5,10 +5,12 @@ package test;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import sml.Labels;
-import sml.Translator;
+import sml.*;
+
+import java.io.File;
 
 /**
  * @author Guilherme
@@ -16,44 +18,34 @@ import sml.Translator;
  */
 public class TranslatorTest {
 
-	/**
-	 * Test method for {@link sml.Translator#Translator(java.lang.String)}.
-	 */
-	@Test
-	public final void testTranslator() {
-		fail("Not yet implemented"); // TODO
-	}
+    private Translator t;
+    String filename;
+    MachineInterface m;
 
-	/**
-	 * Test method for {@link sml.Translator#readAndTranslate(sml.Labels, java.util.ArrayList)}.
-	 */
-	@Test
-	public final void testReadAndTranslate() {
-		fail("Not yet implemented"); // TODO
-	}
+    @Before
+    public void setUp() throws Exception {
+        filename = "testMML.txt";
+        t = new Translator(filename);
+        m = new Machine();
+    }
 
-	/**
-	 * Test method for {@link sml.Translator#getInstruction(java.lang.String)}.
-	 */
-	@Test
-	public final void testGetInstruction() {
-		fail("Not yet implemented"); // TODO
-	}
+    /**
+     * Test method for {@link sml.Translator#Translator(java.lang.String)}.
+     */
+    @Test
+    public final void testTranslator() {
+        File f = new File("src" + File.separator + filename);
+        assertTrue(f.exists());
+        assertTrue(t instanceof Translator);
+    }
 
-	/**
-	 * Test method for {@link sml.Translator#scan()}.
-	 */
-	@Test
-	public final void testScan() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	/**
-	 * Test method for {@link sml.Translator#scanInt()}.
-	 */
-	@Test
-	public final void testScanInt() {
-		fail("Not yet implemented"); // TODO
-	}
+    /**
+     * Test method for {@link sml.Translator#readAndTranslate(sml.Labels, java.util.ArrayList)}.
+     */
+    @Test
+    public final void testReadAndTranslate() {
+        Machine.main(new String[]{filename});
+        assertTrue(t.readAndTranslate(m.getLabels(), m.getProg()));
+    }
 
 }

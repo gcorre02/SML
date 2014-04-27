@@ -68,7 +68,8 @@ public class Translator {
                 line = sc.nextLine();
             } catch (NoSuchElementException ioE) {
                 sc.close();
-                return false;
+                line = null;//made it set null to close the while loop, otherwise it would allways return false, even when successfully reading the whole file.
+                //return false;
             }
         }
         sc.close();
@@ -78,7 +79,7 @@ public class Translator {
     // line should consist of an MML instruction, with its label already
     // removed. Translate line into an instruction with label label
     // and return the instruction
-    public Instruction getInstruction(String label) {
+    private Instruction getInstruction(String label) {
 
         if (line.equals(""))
             return null;
@@ -157,7 +158,7 @@ public class Translator {
      * Return the first word of line and remove it from line. If there is no
      * word, return ""
      */
-    public String scan() {
+    private String scan() {
         line = line.trim();
         if (line.length() == 0)
             return "";
@@ -174,7 +175,7 @@ public class Translator {
 
     // Return the first word of line as an integer. If there is
     // any error, return the maximum int
-    public int scanInt() {
+    private int scanInt() {
         String word = scan();
         if (word.length() == 0) {
             return Integer.MAX_VALUE;
